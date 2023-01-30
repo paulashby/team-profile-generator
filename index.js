@@ -1,6 +1,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const Validator = require("./lib/utils/Validator");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -9,22 +10,29 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+const validator = new Validator();
 
 // Gather information about the development team members, and render the HTML file.
 const roleData = {
     manager: {
+        type: "number",
         specifics: "officeNumber",
         prompt: "Office Number:",
+        validation: "num",
         construct: Manager // Allows us to call constructor via object 'construct' key      
     },
     engineer: {
+        type: "Input",
         specifics: "github",
         prompt: "GitHub username:",
+        validation: "github",
         construct: Engineer
     },
     intern: {
+        type: "Input",
         specifics: "school",
         prompt: "School:",
+        validation: "str",
         construct: Intern
     },
 };
@@ -34,16 +42,19 @@ const employeeQuestions = [
         type: "input",
         name: "name",
         message: "name:",
+        ...validator.getValidation("str"),
     },
     {
         type: "number",
         name: "id",
         message: "Employee ID:",
+        ...validator.getValidation("num"),
     },
     {
         type: "input",
         name: "email",
         message: "Email:",
+        ...validator.getValidation("email"),
     },
 ];
 
@@ -60,13 +71,15 @@ function getQuestions(role) {
     employeeQuestions[0].message = getRoleMessage(role);
 
     return employeeQuestions.concat([{
-        type: "input",
+        type: roleData[role].type,
         name: roleData[role].specifics,
         message: roleData[role].prompt,
+        ...validator.getValidation(roleData[role].validation),
     }])
 }
 
 function addMember(role, memberData) {
+    
     const memberArgs = [
         memberData.name,
         memberData.id,
