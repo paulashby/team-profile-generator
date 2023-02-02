@@ -1,15 +1,14 @@
 const Validator = require("../lib/utils/Validator");
+const workforce = {
+  hasEmployee: (id) => id === 1
+};
 
-describe("Validator" , () => {
-  const e = new Validator();
+describe("Validator", () => {
+  const e = new Validator(workforce);
   it("Can instantiate a Validator instance", () => {
     expect(typeof(e)).toBe("object");
   });
   describe("isValid", () => {
-    it("Should instantiate Validator instance", () => {
-      expect(typeof(e)).toBe("object");
-    });
-    
     it("Should accept valid string", () => {
       const testValue = "John Smith";
       expect(e.isValid(testValue, "str")).toBe(true);
@@ -38,6 +37,16 @@ describe("Validator" , () => {
     it("Should reject num string", () => {
       const testValue = "1";
       expect(e.isValid(testValue, "num")).toBe(false);
+    });
+
+    it("Should reject unavailable employeeId", () => {
+      const testValue = 1;
+      expect(e.isValid(testValue, "employeeId")).toBe(false);
+    });
+
+    it("Should accept available employeeId", () => {
+      const testValue = 2;
+      expect(e.isValid(testValue, "employeeId")).toBe(true);
     });
     
     it("Should accept valid email address", () => {
