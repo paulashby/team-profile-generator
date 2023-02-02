@@ -54,10 +54,3 @@ beforeAll(() => {
     e.updateWorkforce(3);
     expect(e.getWorkforceData()).toEqual(testValue);
   });
-
-
-
-
-
-
-
