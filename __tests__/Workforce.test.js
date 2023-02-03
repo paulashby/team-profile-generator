@@ -62,7 +62,7 @@ beforeAll(() => {
     expect(e.getNextId()).toEqual(testValue);
   });
   
-  test("Should correctly handle units and tens", () => {
+  test("Should correctly handle tens and units in getNextID() function", () => {
     e.workforceData = [1,2,3,4,5,6,7,8,9,10];
     const testValue = 11;
     expect(e.getNextId()).toEqual(testValue);
