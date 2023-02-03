@@ -61,7 +61,7 @@ beforeAll(() => {
     expect(e.getNextId()).toEqual(testValue);
   });
   
-  test("Should lowest possible id via getNextId() function", () => {
+  test("Should return lowest possible id via getNextId() function", () => {
     e.workforceData = [5,6,7];
     const testValue = 1;
     expect(e.getNextId()).toEqual(testValue);
