@@ -26,6 +26,12 @@ beforeAll(() => {
     const testValue = 3;
     expect(e.hasEmployee(testValue)).toBe(true);
   });
+
+  test("Should determine that last employeeId in workforceData is in use", () => {
+    e.workforceData = [1,2,3,4,5];
+    const testValue = 5;
+    expect(e.hasEmployee(testValue)).toBe(true);
+  });
   
   test("Should add a new employee via addEmployee() function when given id is available", () => {
     e.workforceData = [1,2,3,4];
@@ -56,6 +62,12 @@ beforeAll(() => {
     expect(e.getNextId()).toEqual(testValue);
   });
   
+  test("Should correctly handle units and tens", () => {
+    e.workforceData = [1,2,3,4,5,6,7,8,9,10];
+    const testValue = 11;
+    expect(e.getNextId()).toEqual(testValue);
+  });
+
   test("Should return lowest possible id via getNextId() function", () => {
     e.workforceData = [5,6,7];
     const testValue = 1;
