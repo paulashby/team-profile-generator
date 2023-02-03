@@ -55,11 +55,18 @@ beforeAll(() => {
     expect(e.getWorkforceData()).toEqual(testValue);
   });
   
-  test("Should return id of 0 via getNextId() function when no employees in workforce", () => {
+  test("Should return id of 1 via getNextId() function when no employees in workforce", () => {
     e.workforceData = [];
-    const testValue = 0;
+    const testValue = 1;
     expect(e.getNextId()).toEqual(testValue);
   });
+  
+  test("Should lowest possible id via getNextId() function", () => {
+    e.workforceData = [5,6,7];
+    const testValue = 1;
+    expect(e.getNextId()).toEqual(testValue);
+  });
+
   
   test("Should return lowest available id via getNextId() function", () => {
     e.workforceData = [1,3,7];
