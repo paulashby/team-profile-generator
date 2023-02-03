@@ -1,15 +1,14 @@
 const Validator = require("../lib/utils/Validator");
+const workforce = {
+  hasEmployee: (id) => id === 1
+};
 
-describe("Validator" , () => {
-  const e = new Validator();
+describe("Validator", () => {
+  const e = new Validator(workforce);
   it("Can instantiate a Validator instance", () => {
     expect(typeof(e)).toBe("object");
   });
   describe("isValid", () => {
-    it("Should instantiate Validator instance", () => {
-      expect(typeof(e)).toBe("object");
-    });
-    
     it("Should accept valid string", () => {
       const testValue = "John Smith";
       expect(e.isValid(testValue, "str")).toBe(true);
@@ -38,6 +37,16 @@ describe("Validator" , () => {
     it("Should reject num string", () => {
       const testValue = "1";
       expect(e.isValid(testValue, "num")).toBe(false);
+    });
+
+    it("Should reject unavailable employeeId", () => {
+      const testValue = 1;
+      expect(e.isValid(testValue, "employeeId")).toBe(false);
+    });
+
+    it("Should accept available employeeId", () => {
+      const testValue = 2;
+      expect(e.isValid(testValue, "employeeId")).toBe(true);
     });
     
     it("Should accept valid email address", () => {
@@ -101,14 +110,12 @@ describe("Validator" , () => {
       const testValue = "My string";
       const validation = e.getValidation("str");
       expect(validation.validate(testValue)).toBe(true);
-      expect(validation.filter(testValue)).toEqual(testValue);
     });
 
     it("Should return a string validation object that rejects invalid input", () => {
       const testValue = "My str*ng";
       const validation = e.getValidation("str");
-      expect(validation.validate(testValue)).toBe(false);
-      expect(validation.filter(testValue)).toEqual("");
+      expect(validation.validate(testValue)).toBe("Please use only letters or spaces");
     });
 
     it("Should return a number validation object that accepts valid input", () => {
@@ -121,36 +128,56 @@ describe("Validator" , () => {
     it("Should return a number validation object that rejects invalid input", () => {
       const testValue = 0.5;
       const validation = e.getValidation("num");
-      expect(validation.validate(testValue)).toBe(false);
+      expect(validation.validate(testValue)).toBe("Please use only integers");
       expect(validation.filter(testValue)).toEqual("");
+    });
+
+    it("Should return a employeeId validation object that rejects non-numeric strings", () => {
+      const testValue = "One";
+      const validation = e.getValidation("employeeId");
+      expect(validation.validate(testValue)).toBe("Please use only integers");
+    });
+
+    it("Should return a employeeId validation object that rejects floating point strings", () => {
+      const testValue = "1.5";
+      const validation = e.getValidation("employeeId");
+      expect(validation.validate(testValue)).toBe("Please use only integers");
+    });
+
+    it("Should return a employeeId validation object that accepts available id", () => {
+      const testValue = "2";
+      const validation = e.getValidation("employeeId");
+      expect(validation.validate(testValue)).toBe(true);
+    });
+
+    it("Should return a employeeId validation object that rejects unavailable id", () => {
+      const testValue = "1";
+      const validation = e.getValidation("employeeId");
+      expect(validation.validate(testValue)).toBe("Employee number already in use");
     });
 
     it("Should return an email validation object that accepts valid input", () => {
       const testValue = "john@example.com";
       const validation = e.getValidation("email");
       expect(validation.validate(testValue)).toBe(true);
-      expect(validation.filter(testValue)).toEqual(testValue);
     });
 
     it("Should return an email validation object that rejects invalid input", () => {
       const testValue = "john@example";
       const validation = e.getValidation("email");
-      expect(validation.validate(testValue)).toBe(false);
-      expect(validation.filter(testValue)).toEqual("");
+      expect(validation.validate(testValue)).toBe("Please provide a valid email address");
     });
 
     it("Should return a github validation object that accepts valid input", () => {
       const testValue = "my-username";
       const validation = e.getValidation("github");
       expect(validation.validate(testValue)).toBe(true);
-      expect(validation.filter(testValue)).toEqual(testValue);
     });
 
     it("Should return a github validation object that rejects invalid input", () => {
       const testValue = "my--username";
       const validation = e.getValidation("github");
-      expect(validation.validate(testValue)).toBe(false);
-      expect(validation.filter(testValue)).toEqual("");
+      expect(validation.validate(testValue)).toBe("Please provide a valid github username");
     });
   });
 });

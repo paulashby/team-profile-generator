@@ -1,3 +1,4 @@
+const Workforce = require("./lib/Workforce");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -8,9 +9,11 @@ const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+const workforceFile = path.join(__dirname, "data", "workforce.json");
+const workforce = new Workforce(workforceFile);
 
 const render = require("./src/page-template.js");
-const validator = new Validator();
+const validator = new Validator(workforce);
 
 // Gather information about the development team members, and render the HTML file.
 const roleData = {
@@ -45,10 +48,11 @@ const employeeQuestions = [
         ...validator.getValidation("str"),
     },
     {
-        type: "number",
+        // Number input doesn't clear after validator makes call to Workforce, so going with input type
+        type: "input",
         name: "id",
         message: "Employee ID:",
-        ...validator.getValidation("num"),
+        ...validator.getValidation("employeeId"),
     },
     {
         type: "input",
@@ -86,7 +90,7 @@ function addMember(role, memberData) {
         memberData.email,
         memberData[roleData[role].specifics]
     ];
-    const member = new (roleData[role].construct)(...memberArgs);
+    const member = workforce.addEmployee(new (roleData[role].construct)(...memberArgs));
     team.push(member);
 
     inquirer // Add another member or finish
