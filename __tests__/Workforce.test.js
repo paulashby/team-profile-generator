@@ -15,11 +15,6 @@ beforeAll(() => {
     expect(e.workforceFile).toBe(workforceFile);
   });
 
-  test("Should return workforceData via getWorkforceData() function", () => {
-    const testValue = [];
-    expect(e.getWorkforceData()).toEqual(testValue);
-  });
-
   test("Should determine that available employeeId is not in use", () => {
     e.workforceData = [1,2,3,4];
     const testValue = 5;
@@ -52,7 +47,7 @@ beforeAll(() => {
     e.workforceData = [];
     const testValue = [3];
     e.updateWorkforce(3);
-    expect(e.getWorkforceData()).toEqual(testValue);
+    expect(e.workforceData).toEqual(testValue);
   });
   
   test("Should return id of 1 via getNextId() function when no employees in workforce", () => {
