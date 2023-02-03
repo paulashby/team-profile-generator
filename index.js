@@ -13,7 +13,7 @@ const workforceFile = path.join(__dirname, "data", "workforce.json");
 const workforce = new Workforce(workforceFile);
 
 const render = require("./src/page-template.js");
-const validator = new Validator();
+const validator = new Validator(workforce);
 
 // Gather information about the development team members, and render the HTML file.
 const roleData = {
@@ -48,10 +48,11 @@ const employeeQuestions = [
         ...validator.getValidation("str"),
     },
     {
-        type: "number",
+        // Number input doesn't clear after validator makes call to Workforce, so going with input type
+        type: "input",
         name: "id",
         message: "Employee ID:",
-        ...validator.getValidation("num"),
+        ...validator.getValidation("employeeId"),
     },
     {
         type: "input",
