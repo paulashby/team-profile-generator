@@ -79,3 +79,9 @@ beforeAll(() => {
     const testValue = 4;
     expect(e.getNextId()).toEqual(testValue);
   });
+  
+  test("Should return correct value via getNextId() function when workforceData is non-sequential", () => {
+    e.workforceData = [7,2,3];
+    const testValue = 1;
+    expect(e.getNextId()).toEqual(testValue);
+  });
