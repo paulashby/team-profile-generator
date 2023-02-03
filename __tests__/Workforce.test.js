@@ -55,8 +55,20 @@ beforeAll(() => {
     expect(e.getWorkforceData()).toEqual(testValue);
   });
   
+  test("Should return id of 0 via getNextId() function when no employees in workforce", () => {
+    e.workforceData = [];
+    const testValue = 0;
+    expect(e.getNextId()).toEqual(testValue);
+  });
+  
   test("Should return lowest available id via getNextId() function", () => {
     e.workforceData = [1,3,7];
     const testValue = 2;
+    expect(e.getNextId()).toEqual(testValue);
+  });
+  
+  test("Should return correct value via getNextId() function when workforceData has no empty indices", () => {
+    e.workforceData = [1,2,3];
+    const testValue = 4;
     expect(e.getNextId()).toEqual(testValue);
   });
