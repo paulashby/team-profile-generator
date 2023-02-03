@@ -4,11 +4,7 @@
 
   ## Table of Contents
 
-<<<<<<< HEAD
-  [Description](#description)<br />[Installation](#installation)<br />[Usage](#usage)<br />[Contributing](#contributing)<br />[Tests](#tests)<br />[License](#license)<br />[Questions](#questions)<br />
-=======
   [Description](#description)<br />[Installation](#installation)<br />[Usage](#usage)<br />[Contributing](#contributing)<br />[Tests](#tests)<br />[License](#license)<br />[Questions](#questions)<br />[Demo](#demo)<br />
->>>>>>> bc1f755c282f4411ac08416bedbcfc0e3fdb6f77
 
   ## Description
 
@@ -20,11 +16,7 @@
   
   ## Usage
   
-<<<<<<< HEAD
-  Run the app with<br />```node index```<br />Provide responses to each of the questions, adding engineers and interns until the team is complete, at which point the 'Done' option should be selected.<br />The app will generate the 'team.html' file in the 'output' directory.<br />If you're running VS Code, you can right click this file and select 'Open with Live Server' to view in a web browser.
-=======
   Run the app with<br />```node index```<br />Provide responses to each of the questions, adding engineers and interns until the team is complete, at which point the 'Done' option should be selected. The app will now generate the 'team.html' file in the 'output' directory. If you're running VS Code, you can right click this file and select 'Open with Live Server' to view in a web browser.
->>>>>>> bc1f755c282f4411ac08416bedbcfc0e3fdb6f77
   
   ## Contributing
   
@@ -40,11 +32,7 @@
   
   ## Questions
   
-<<<<<<< HEAD
-  Feel free to [email me](mailto:paul@primitive.co?subject=Team%20Profile%20Generator%20query%20from%20GitHub) with any queries. If you'd like to see some of my other projects, my GitHub user name is [paulashby](https://github.com/paulashby).
-=======
   Feel free to [email me](mailto:paul@primitive.co?subject=Team%20Profile%20Generator%20query%20from%20GitHub) with any queries. If you'd like to see some of my other projects, my GitHub user name is [paulashby](https://github.com/paulashby).
 
   ## Demo
   A demonstration video is available [here](https://watch.screencastify.com/v/qT3JwrByJSbLoYp92AYo).
->>>>>>> bc1f755c282f4411ac08416bedbcfc0e3fdb6f77
