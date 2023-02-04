@@ -8,7 +8,8 @@
 
   ## Description
 
-  Commandline app allowing HTML development team profile pages to be generated from user input.
+  Command line app allowing HTML development team profile pages to be generated from user input. The app includes a [Validator class](https://github.com/paulashby/team-profile-generator/blob/main/lib/utils/Validator.js) which uses regular expressions and type checking to validate strings, numbers, employee Ids, emails and github user names. It provides validation objects for Inquirer via its getValidation() function. 
+  The [Workforce class](https://github.com/paulashby/team-profile-generator/blob/main/lib/Workforce.js) manages employee Id numbers, writing data to a JSON file for persistence.
   
   ## Installation
   
