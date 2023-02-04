@@ -35,4 +35,4 @@
   Feel free to [email me](mailto:paul@primitive.co?subject=Team%20Profile%20Generator%20query%20from%20GitHub) with any queries. If you'd like to see some of my other projects, my GitHub user name is [paulashby](https://github.com/paulashby).
 
   ## Demo
-  A demonstration video is available [here](https://watch.screencastify.com/v/qT3JwrByJSbLoYp92AYo).
+  A demonstration video is available [here](https://watch.screencastify.com/v/DhDxF8Oj3VN8Qhhv1V2e).
