@@ -21,7 +21,7 @@
   
   ## Contributing
   
-  If you would like to make a contribution to the app, simply fork the respository and submit a Pull Request. If I like it, I may include it in the codebase.
+  If you would like to make a contribution to the app, simply fork the repository and submit a Pull Request. If I like it, I may include it in the codebase.
   
   ## Tests
   
